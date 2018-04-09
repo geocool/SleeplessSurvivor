@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ControlsManager : MonoBehaviour {
 
-	public static bool controllerEnabled = false;
+	public static bool controllerEnabled = true;
 
 	// Use this for initialization
 	void Start () {

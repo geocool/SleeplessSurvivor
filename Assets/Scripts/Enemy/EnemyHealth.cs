@@ -15,7 +15,6 @@ public class EnemyHealth : MonoBehaviour
     CapsuleCollider capsuleCollider;
     bool isDead;
     bool isSinking;
-	GameObject gem;
 
 
     void Awake ()
@@ -26,7 +25,6 @@ public class EnemyHealth : MonoBehaviour
         capsuleCollider = GetComponent <CapsuleCollider> ();
 
         currentHealth = startingHealth;
-		gem = Resources.Load("PinkGemHolder", typeof(GameObject)) as GameObject;
     }
 
 
@@ -62,9 +60,6 @@ public class EnemyHealth : MonoBehaviour
 
     void Death ()
     {
-		Vector3 gemPosition = transform.position;
-		gemPosition.y = 0;
-
         isDead = true;
 
         capsuleCollider.isTrigger = true;
@@ -73,9 +68,8 @@ public class EnemyHealth : MonoBehaviour
 
         enemyAudio.clip = deathClip;
         enemyAudio.Play ();
-
-
-		Instantiate (gem, gemPosition, Quaternion.identity);
+		GemManager gemManager = GameObject.Find ("GemManager").transform.GetComponent<GemManager> ();
+	    gemManager.createAtPosition (transform.position);
     }
 
 
