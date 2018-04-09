@@ -113,6 +113,8 @@
      <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerShooting.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerShowLaser.cs" />
+     <Compile Include="Assets\Scripts\UI\GameHUD\GemHUDController.cs" />
+     <Compile Include="Assets\Scripts\UI\Pause\PauseController.cs" />
      <Compile Include="Assets\Scripts\Waves\WaveController.cs" />
      <Compile Include="Assets\Scripts\Weapons\GemBombController.cs" />
      <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />

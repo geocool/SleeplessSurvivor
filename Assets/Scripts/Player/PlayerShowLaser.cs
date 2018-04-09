@@ -18,6 +18,10 @@ public class PlayerShowLaser : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+	}
+
+	void FixedUpdate () {
 		if (ControlsManager.controllerEnabled) {
 			if (Input.GetAxisRaw ("ShowLaser") > 0) {
 				showLaser ();
