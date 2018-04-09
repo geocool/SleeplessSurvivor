@@ -1,0 +1,21 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Player/PlayerMovement.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Weapons/GemBombController.cs" Line="34" Column="24" />
+      <File FileName="Assets/Scripts/Player/playerBombing.cs" Line="9" Column="18" />
+      <File FileName="Assets/Scripts/Player/PlayerHealth.cs" Line="76" Column="29" />
+      <File FileName="Assets/Scripts/Player/playerMana.cs" Line="28" Column="44" />
+      <File FileName="Assets/Scripts/Enemy/EnemyHealth.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Enemy/EnemyAttack.cs" Line="20" Column="1" />
+      <File FileName="Assets/Scripts/Player/PlayerShooting.cs" Line="16" Column="25" />
+      <File FileName="Assets/Scripts/PickUps/GemCollector.cs" Line="22" Column="55" />
+      <File FileName="Assets/Scripts/Managers/ControlsManager.cs" Line="17" Column="3" />
+      <File FileName="Assets/Scripts/Player/PlayerMovement.cs" Line="38" Column="17" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

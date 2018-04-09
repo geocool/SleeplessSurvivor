@@ -37,17 +37,30 @@ public class PlayerMovement : MonoBehaviour
 
 	void Turning() 
 	{
-		Ray camRay = Camera.main.ScreenPointToRay (Input.mousePosition);
-		RaycastHit floorHit;
+		if (ControlsManager.controllerEnabled) {
+			float h = Input.GetAxisRaw ("CameraHorizontal");
+			float v = Input.GetAxisRaw ("CameraVertical");
+			Vector3 rotationVector = new Vector3 (h, 0f, v * -1); // Invert Vertical Axis
 
-		if (Physics.Raycast (camRay, out floorHit, camRayLength, floorMask)) 
-		{
-			Vector3 playerToMouse = floorHit.point - transform.position;
-			playerToMouse.y = 0f;
+			if (rotationVector != Vector3.zero) {
+				Quaternion newRotation = Quaternion.LookRotation(rotationVector);
+				playerRigidbody.MoveRotation (newRotation);
+			}
 
-			Quaternion newRotation = Quaternion.LookRotation (playerToMouse);
-			playerRigidbody.MoveRotation (newRotation);
+		} else {
+			Ray camRay = Camera.main.ScreenPointToRay (Input.mousePosition);
+			RaycastHit floorHit;
+
+			if (Physics.Raycast (camRay, out floorHit, camRayLength, floorMask)) 
+			{
+				Vector3 playerToMouse = floorHit.point - transform.position;
+				playerToMouse.y = 0f;
+
+				Quaternion newRotation = Quaternion.LookRotation (playerToMouse);
+				playerRigidbody.MoveRotation (newRotation);
+			}
 		}
+
 	}
 
 	void Animating(float h, float v)

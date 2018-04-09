@@ -25,6 +25,7 @@ public class PlayerShooting : MonoBehaviour
         gunLine = GetComponent <LineRenderer> ();
         gunAudio = GetComponent<AudioSource> ();
         gunLight = GetComponent<Light> ();
+
     }
 
 
@@ -32,10 +33,18 @@ public class PlayerShooting : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-		if(Input.GetButton ("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
-        {
-            Shoot ();
-        }
+		if(timer >= timeBetweenBullets && Time.timeScale != 0) {
+
+			if (ControlsManager.controllerEnabled) {
+				if (Input.GetAxisRaw ("Fire1") > 0 && Input.GetAxisRaw ("ShowLaser") > 0) {
+					Shoot ();
+				}
+			} else if (Input.GetButton ("Fire1")) {
+				Shoot ();
+			}
+
+		}
+
 
         if(timer >= timeBetweenBullets * effectsDisplayTime)
         {
@@ -49,6 +58,7 @@ public class PlayerShooting : MonoBehaviour
         gunLine.enabled = false;
         gunLight.enabled = false;
     }
+		
 
 
     void Shoot ()
@@ -57,13 +67,16 @@ public class PlayerShooting : MonoBehaviour
 
         gunAudio.Play ();
 
-        gunLight.enabled = true;
+
+		gunLight.enabled = true;
 
         gunParticles.Stop ();
         gunParticles.Play ();
 
-        gunLine.enabled = true;
-        gunLine.SetPosition (0, transform.position);
+		if (!ControlsManager.controllerEnabled) {
+			gunLine.enabled = true;
+			gunLine.SetPosition (0, transform.position);
+		}
 
         shootRay.origin = transform.position;
         shootRay.direction = transform.forward;
