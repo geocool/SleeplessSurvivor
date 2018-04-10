@@ -28,7 +28,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1330457848344648
 GameObject:
   m_ObjectHideFlags: 0
@@ -79,13 +79,14 @@ GameObject:
   - component: {fileID: 114777914637259332}
   - component: {fileID: 114657325500505340}
   - component: {fileID: 114810422104025624}
+  - component: {fileID: 114242101886696136}
   m_Layer: 9
   m_Name: Zombunny
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4075874955431456
 Transform:
   m_ObjectHideFlags: 1
@@ -132,7 +133,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1935020123796978}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.2112496, y: 0.0000001365073, z: 1.1451063}
+  m_LocalPosition: {x: 2.84, y: 0.0000001365073, z: 4.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4075874955431456}
@@ -294,6 +295,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 0
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114242101886696136
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1935020123796978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33a1d061dc92441c09c86e00380f8e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdingGem: {fileID: 1961069754920156, guid: 98f5d5a33183447e8aaddb535d28a5f6, type: 2}
+  gemDirectory: {fileID: 0}
 --- !u!114 &114657325500505340
 MonoBehaviour:
   m_ObjectHideFlags: 1

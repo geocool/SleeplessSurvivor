@@ -16,6 +16,8 @@ public class EnemyHealth : MonoBehaviour
     bool isDead;
     bool isSinking;
 
+	public delegate void EnemyDied();
+	public event EnemyDied enemyDiedEvent;
 
     void Awake ()
     {
@@ -61,15 +63,13 @@ public class EnemyHealth : MonoBehaviour
     void Death ()
     {
         isDead = true;
-
         capsuleCollider.isTrigger = true;
-
         anim.SetTrigger ("Dead");
-
         enemyAudio.clip = deathClip;
         enemyAudio.Play ();
-		GemManager gemManager = GameObject.Find ("GemManager").transform.GetComponent<GemManager> ();
-	    gemManager.createAtPosition (transform.position);
+		if (enemyDiedEvent != null) {
+			enemyDiedEvent ();
+		}
     }
 
 

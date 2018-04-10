@@ -5,6 +5,7 @@ using UnityEngine;
 public class GemController : MonoBehaviour {
 
 	public float lifeTime = 5f;
+	public uint value = 5;
 
 	private float timer = 0;
 	bool lockGemAction = false; // Make sure gem won't be destroyed while is been collected
