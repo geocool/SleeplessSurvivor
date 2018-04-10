@@ -10,7 +10,6 @@ public class WaveController : MonoBehaviour {
 	public GameObject spawnPoints;
 	private int spawnPointsCount;
 
-
 	[System.Serializable]
 	public class Enemy
 	{
@@ -21,7 +20,6 @@ public class WaveController : MonoBehaviour {
 
 	public GameObject enemiesDirectory;
 	public Enemy[] enemies;
-
 
 	void OnEnable() {
 		InvokeRepeating ("spawnEnemy", 3f, timeBetweenEnemies);
@@ -63,5 +61,9 @@ public class WaveController : MonoBehaviour {
 
 		Debug.LogError ("Random enemy process failed");
 		return null;
+	}
+
+	public int getRemainingEnemies () {
+		return enemiesDirectory.transform.childCount;
 	}
 }

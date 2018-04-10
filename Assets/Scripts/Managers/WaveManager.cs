@@ -6,11 +6,15 @@ public class WaveManager : MonoBehaviour {
 
 	public GameObject waves;
 	private int wavesCount;
-	public static int waveIndex = 0;
-	float waveEnabledTimestamp = 0;
+	private int waveIndex = 0;
+	private float waveEnabledTimestamp = 0;
 	private WaveController currentWaveController;
-	bool runningWave = false;
+	[HideInInspector]
+	public bool runningWave = false;
+	public bool clearedWave = true;
 
+	public delegate void OnWaveCleared(WaveController waveController);
+	public event OnWaveCleared WaveClearedEvent;
 
 	// Use this for initialization
 	void Start () {
@@ -20,9 +24,25 @@ public class WaveManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Time.time >= waveEnabledTimestamp + currentWaveController.lifeTime) {
-			disableCurrentWave ();
-			enableNextWave ();
+
+	}
+
+	void FixedUpdate () {
+		if (runningWave) {
+			// Check if wave time ended
+			if (Time.time >= waveEnabledTimestamp + currentWaveController.lifeTime) {
+				disableCurrentWave ();
+				//enableNextWave ();
+			}
+
+
+		} else if (!clearedWave) {
+			
+			if (currentWaveController.getRemainingEnemies () == 0) {
+				clearedWave = true;
+				if (WaveClearedEvent != null)
+					WaveClearedEvent (currentWaveController);
+			}
 		}
 	}
 
@@ -32,6 +52,7 @@ public class WaveManager : MonoBehaviour {
 		currentWaveController = wave.GetComponent<WaveController> ();
 		waveEnabledTimestamp = Time.time;
 		runningWave = true;
+		clearedWave = false;
 	}
 
 	void disableCurrentWave() {
@@ -50,8 +71,18 @@ public class WaveManager : MonoBehaviour {
 			currentWaveController = wave.GetComponent<WaveController> ();
 			waveEnabledTimestamp = Time.time;
 			runningWave = true;
+			clearedWave = false;
 		} else {
 			Debug.Log ("End Of Waves");
 		}
+	}
+
+	public int getTimeUntilEndOfWave() {
+		float secondsRemaining = currentWaveController.lifeTime + waveEnabledTimestamp - Time.time;
+		return (int) (secondsRemaining < 0 ? 0 : secondsRemaining);
+	}
+
+	public int getWaveNumber () {
+		return waveIndex + 1;
 	}
 }

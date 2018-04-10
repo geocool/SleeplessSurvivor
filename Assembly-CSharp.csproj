@@ -105,6 +105,7 @@
      <Compile Include="Assets\Scripts\Managers\GameOverManager.cs" />
      <Compile Include="Assets\Scripts\Managers\GemManager.cs" />
      <Compile Include="Assets\Scripts\Managers\ScoreManager.cs" />
+     <Compile Include="Assets\Scripts\Managers\UpgradeManager.cs" />
      <Compile Include="Assets\Scripts\Managers\WaveManager.cs" />
      <Compile Include="Assets\Scripts\PickUps\GemCollector.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerBombing.cs" />
@@ -113,7 +114,9 @@
      <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerShooting.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerShowLaser.cs" />
+     <Compile Include="Assets\Scripts\UI\GameHUD\AnnouncementController.cs" />
      <Compile Include="Assets\Scripts\UI\GameHUD\GemHUDController.cs" />
+     <Compile Include="Assets\Scripts\UI\GameHUD\WaveHUDController.cs" />
      <Compile Include="Assets\Scripts\UI\Pause\PauseController.cs" />
      <Compile Include="Assets\Scripts\Waves\WaveController.cs" />
      <Compile Include="Assets\Scripts\Weapons\GemBombController.cs" />
