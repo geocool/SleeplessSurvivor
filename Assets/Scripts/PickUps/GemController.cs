@@ -7,6 +7,7 @@ public class GemController : MonoBehaviour {
 	public float lifeTime = 5f;
 
 	private float timer = 0;
+	bool lockGemAction = false; // Make sure gem won't be destroyed while is been collected
 
 	// Use this for initialization
 	void Start () {
@@ -23,13 +24,17 @@ public class GemController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 
-		if (other.gameObject.CompareTag("Player")) {
+		if (other.gameObject.CompareTag("Player") && !lockGemAction) {
+			lockGemAction = true;
 			GemManager gemManager = GameObject.Find ("GemManager").transform.GetComponent<GemManager> ();
 			gemManager.collect (gameObject);
 		}
 	}
 
 	void destroyGem() {
-		Destroy (transform.parent.gameObject);
+		if (!lockGemAction) {
+			lockGemAction = true;
+			Destroy (transform.parent.gameObject);
+		}
 	}
 }
