@@ -39,7 +39,7 @@ public class PlayerShooting : MonoBehaviour
 				if (Input.GetAxisRaw ("Fire1") > 0 && Input.GetAxisRaw ("ShowLaser") > 0) {
 					Shoot ();
 				}
-			} else if (Input.GetButton ("Fire1")) {
+			} else if (Input.GetButton ("Fire1") && Input.GetButton ("ShowLaser")) {
 				Shoot ();
 			}
 
@@ -73,10 +73,11 @@ public class PlayerShooting : MonoBehaviour
         gunParticles.Stop ();
         gunParticles.Play ();
 
-		if (!ControlsManager.controllerEnabled) {
+		/* Disabled Gun Line
+		 * if (!ControlsManager.controllerEnabled) {
 			gunLine.enabled = true;
 			gunLine.SetPosition (0, transform.position);
-		}
+		}*/
 
         shootRay.origin = transform.position;
         shootRay.direction = transform.forward;
@@ -88,11 +89,11 @@ public class PlayerShooting : MonoBehaviour
             {
                 enemyHealth.TakeDamage (damagePerShot, shootHit.point);
             }
-            gunLine.SetPosition (1, shootHit.point);
+            //gunLine.SetPosition (1, shootHit.point);
         }
-        else
+        /*else
         {
             gunLine.SetPosition (1, shootRay.origin + shootRay.direction * range);
-        }
+        }*/
     }
 }

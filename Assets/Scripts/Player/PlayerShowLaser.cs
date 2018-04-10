@@ -22,12 +22,10 @@ public class PlayerShowLaser : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		if (ControlsManager.controllerEnabled) {
-			if (Input.GetAxisRaw ("ShowLaser") > 0) {
-				showLaser ();
-			} else {
-				gunLaser.enabled = false;
-			}
+		if (Input.GetAxisRaw ("ShowLaser") > 0 || Input.GetButton("ShowLaser")) {
+			showLaser ();
+		} else {
+			gunLaser.enabled = false;
 		}
 	}
 
