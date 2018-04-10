@@ -86,7 +86,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1625970635221908
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,7 +405,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdingGem: {fileID: 1961069754920156, guid: ecd525cd056e94722be7af73e799b45a, type: 2}
-  gemDirectory: {fileID: 0}
 --- !u!114 &114660463317756874
 MonoBehaviour:
   m_ObjectHideFlags: 1

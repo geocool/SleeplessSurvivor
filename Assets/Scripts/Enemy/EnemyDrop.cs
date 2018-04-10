@@ -5,13 +5,14 @@ using UnityEngine;
 public class EnemyDrop : MonoBehaviour {
 
 	public GameObject holdingGem;
-	public GameObject gemDirectory;
+	private GameObject gemDirectory;
 
 	private EnemyHealth enemyHealth;
 
 	void Start () {
 		enemyHealth = GetComponent<EnemyHealth> ();
 		enemyHealth.enemyDiedEvent += dropGem;
+		gemDirectory = GameObject.Find ("Gems");
 	}
 
 	void dropGem () {
