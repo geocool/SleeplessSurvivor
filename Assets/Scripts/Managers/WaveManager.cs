@@ -20,6 +20,7 @@ public class WaveManager : MonoBehaviour {
 	void Start () {
 		wavesCount = waves.transform.childCount;
 		initializeWaves ();
+		initializeWaveAI ();
 	}
 	
 	// Update is called once per frame
@@ -44,6 +45,77 @@ public class WaveManager : MonoBehaviour {
 					WaveClearedEvent (currentWaveController);
 			}
 		}
+
+		updateWaveAI ();
+	}
+
+	enum WaveState {Small,Medium,Big,Boss};
+	WaveState waveState;
+	float waveSpawnRate = 1;
+	float timer = 0;
+	void initializeWaveAI () {
+		changeWaveStateAI(WaveState.Small);
+
+	}
+
+	void updateWaveAI () {
+		timer += Time.deltaTime;
+		int remainingTime = getTimeUntilEndOfWave ();
+
+		if (remainingTime == 15 && waveState != WaveState.Boss ) {
+			changeWaveStateAI (WaveState.Boss);
+
+		} else if (remainingTime > 15 && remainingTime % 15 == 0 && remainingTime != 75 && timer >= 1) {
+			timer = 0;
+			int randomState = Random.Range (0, 2);
+			WaveState newState = 0;
+
+			switch (waveState) {
+			case WaveState.Small: 
+				newState = randomState == 0 ? WaveState.Medium : WaveState.Big;
+				break;
+			case WaveState.Medium:
+				newState = randomState == 0 ? WaveState.Small : WaveState.Big;
+				break;
+			case WaveState.Big:
+				newState = WaveState.Small;
+				break;
+			default:
+				Debug.LogError ("WaveState out of bounds");
+				break;
+			}
+
+			changeWaveStateAI (newState);
+		}
+	}
+
+	void changeWaveStateAI (WaveState state) {
+		Debug.Log ("New Wave State: " + state.ToString ());
+		waveState = state;
+
+		switch (state) {
+		case WaveState.Small: 
+			waveSpawnRate = 5f;
+			break;
+		case WaveState.Medium:
+			waveSpawnRate = 2.5f;
+				break;
+		case WaveState.Big:
+			waveSpawnRate = 1.5f;
+				break;
+		case WaveState.Boss:
+			waveSpawnRate = 1.5f;
+				break;
+			default:
+				Debug.LogError ("WaveState out of bounds");
+				break;
+		}
+
+		// Temporary
+		Transform wave = waves.transform.GetChild (waveIndex);
+		wave.gameObject.SetActive (true);
+		currentWaveController = wave.GetComponent<WaveController> ();
+		currentWaveController.changeSpawnTime (waveSpawnRate);
 	}
 
 	void initializeWaves () {

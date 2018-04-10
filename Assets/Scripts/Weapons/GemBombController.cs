@@ -17,17 +17,17 @@ public class GemBombController : MonoBehaviour {
 		animator = GetComponent<Animator> ();	
 		bombSound = GetComponent<AudioSource> ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
+		
+	void FixedUpdate() {
 		timer += Time.deltaTime;
 
-		if (timer >= timeAlive) {
+		if (!exploded && timer >= timeAlive) {
 			explode ();
 		}
 	}
 
 	void explode () {
+		Debug.Log( "Enabled: " + bombSound.enabled);
 		bombSound.Play ();
 		animator.SetTrigger ("Explode");
 		exploded = true;

@@ -24,8 +24,8 @@ GameObject:
   - component: {fileID: 23297476498622656}
   - component: {fileID: 108970029278182960}
   - component: {fileID: 95071415045167812}
-  - component: {fileID: 82989843942441302}
   - component: {fileID: 114940854780498086}
+  - component: {fileID: 82650931639017996}
   m_Layer: 0
   m_Name: GemBomb
   m_TagString: Untagged
@@ -87,7 +87,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1830230901989518}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!82 &82989843942441302
+--- !u!82 &82650931639017996
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d5f31abb1529441e8e3a0a96147b603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeAlive: 1
+  timeAlive: 0.5
   bombDamage: 80
 --- !u!135 &135485017505154374
 SphereCollider:

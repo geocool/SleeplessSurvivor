@@ -22,12 +22,30 @@ public class WaveController : MonoBehaviour {
 	public Enemy[] enemies;
 
 	void OnEnable() {
+		startWave ();
+	}
+
+	void OnDisable() {
+		stopWave ();
+	}
+
+	public void changeSpawnTime(float newTime) {
+		timeBetweenEnemies = newTime;
+		restartWave ();
+	}
+
+	void startWave() {
 		InvokeRepeating ("spawnEnemy", 3f, timeBetweenEnemies);
 		spawnPointsCount = spawnPoints.transform.childCount;
 	}
 
-	void OnDisable() {
+	void stopWave() {
 		CancelInvoke();
+	}
+
+	void restartWave() {
+		stopWave ();
+		startWave ();
 	}
 
 
