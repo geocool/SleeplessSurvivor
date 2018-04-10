@@ -12,12 +12,17 @@ public class WaveManager : MonoBehaviour {
 	[HideInInspector]
 	public bool runningWave = false;
 	public bool clearedWave = true;
+	public float timeBetweenWaves = 5f;
 
 	public delegate void OnWaveCleared(WaveController waveController);
 	public event OnWaveCleared WaveClearedEvent;
 
+	AnnouncementController announcementController;
+
 	// Use this for initialization
 	void Start () {
+		announcementController = GameObject.Find("AnnouncementUI").GetComponent<AnnouncementController> ();
+
 		wavesCount = waves.transform.childCount;
 		initializeWaves ();
 		initializeWaveAI ();
@@ -33,7 +38,6 @@ public class WaveManager : MonoBehaviour {
 			// Check if wave time ended
 			if (Time.time >= waveEnabledTimestamp + currentWaveController.lifeTime) {
 				disableCurrentWave ();
-				//enableNextWave ();
 			}
 
 
@@ -41,6 +45,8 @@ public class WaveManager : MonoBehaviour {
 			
 			if (currentWaveController.getRemainingEnemies () == 0) {
 				clearedWave = true;
+				announcementController.announce ("Wave " + (waveIndex+1)  + " Cleared!");
+				Invoke ("enableNextWave", timeBetweenWaves);
 				if (WaveClearedEvent != null)
 					WaveClearedEvent (currentWaveController);
 			}
@@ -49,6 +55,7 @@ public class WaveManager : MonoBehaviour {
 		updateWaveAI ();
 	}
 
+	// Change the ratio of enemies spawn
 	enum WaveState {Small,Medium,Big,Boss};
 	WaveState waveState;
 	float waveSpawnRate = 1;
@@ -90,7 +97,6 @@ public class WaveManager : MonoBehaviour {
 	}
 
 	void changeWaveStateAI (WaveState state) {
-		Debug.Log ("New Wave State: " + state.ToString ());
 		waveState = state;
 
 		switch (state) {
@@ -144,6 +150,7 @@ public class WaveManager : MonoBehaviour {
 			waveEnabledTimestamp = Time.time;
 			runningWave = true;
 			clearedWave = false;
+			initializeWaveAI ();
 		} else {
 			Debug.Log ("End Of Waves");
 		}

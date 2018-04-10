@@ -15,10 +15,14 @@ public class AnnouncementController : MonoBehaviour {
 		animator = GetComponent<Animator> ();
 	}
 
-	public void announce(string message,OnEndCallback onEndCallback) {
+	public void announce(string message) {
 		announcementText.text = message;
-		currentCallback = onEndCallback;
 		animator.SetTrigger ("Announce");
+	}
+
+	public void announce(string message,OnEndCallback onEndCallback) {
+		announce (message);
+		currentCallback = onEndCallback;
 	}
 
 	void OnAnnouncementEnd() {

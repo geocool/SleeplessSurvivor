@@ -27,7 +27,6 @@ public class GemBombController : MonoBehaviour {
 	}
 
 	void explode () {
-		Debug.Log( "Enabled: " + bombSound.enabled);
 		bombSound.Play ();
 		animator.SetTrigger ("Explode");
 		exploded = true;

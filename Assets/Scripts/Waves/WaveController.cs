@@ -35,7 +35,7 @@ public class WaveController : MonoBehaviour {
 	}
 
 	void startWave() {
-		InvokeRepeating ("spawnEnemy", 3f, timeBetweenEnemies);
+		InvokeRepeating ("spawnEnemy", 0f, timeBetweenEnemies);
 		spawnPointsCount = spawnPoints.transform.childCount;
 	}
 

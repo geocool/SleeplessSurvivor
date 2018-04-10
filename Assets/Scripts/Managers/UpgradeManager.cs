@@ -22,10 +22,10 @@ public class UpgradeManager : MonoBehaviour {
 
 	void enableUpgradeMode() {
 		// Announce Upgrade
-		GameObject announcementUI = GameObject.Find("AnnouncementUI");
+		/*GameObject announcementUI = GameObject.Find("AnnouncementUI");
 		AnnouncementController announcementController = announcementUI.GetComponent<AnnouncementController> ();
 		announcementController.announce ("Upgrade Time!", () => {
-			Debug.Log("Upgrade Announcement Callback");
-		});
+			/Debug.Log("Upgrade Announcement Callback");
+		});*/
 	}
 }
