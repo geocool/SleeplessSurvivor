@@ -7,7 +7,10 @@ public class PlayerMana : MonoBehaviour {
 
 	public int currentMana = 100;
 	public int maxMana = 100;
+	[Tooltip("MP Per Second")]
+	public int regenerationRate = 1;
 	public Slider manaSlider;
+	float timer = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -19,6 +22,23 @@ public class PlayerMana : MonoBehaviour {
 		
 	}
 
+	void FixedUpdate () {
+		timer += Time.deltaTime;
+
+		regenerateMana ();
+	}
+
+	void regenerateMana() {
+		if (timer >= 1) {
+			timer = 0;
+			currentMana += regenerationRate;
+			if (currentMana > maxMana)
+				currentMana = maxMana;
+
+			updateSlider ();
+		}
+	}
+
 	public bool hasEnoughtMana(int manaRequired) {
 		return currentMana >= manaRequired;
 	}
@@ -27,6 +47,10 @@ public class PlayerMana : MonoBehaviour {
 		currentMana -= manaUsed;
 		currentMana = currentMana < 0 ? 0 : currentMana;
 
+		updateSlider ();
+	}
+
+	private void updateSlider () {
 		manaSlider.value = currentMana;
 	}
 }
