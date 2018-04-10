@@ -107,7 +107,7 @@
      <Compile Include="Assets\Scripts\Managers\ScoreManager.cs" />
      <Compile Include="Assets\Scripts\Managers\UpgradeManager.cs" />
      <Compile Include="Assets\Scripts\Managers\WaveManager.cs" />
-     <Compile Include="Assets\Scripts\PickUps\GemCollector.cs" />
+     <Compile Include="Assets\Scripts\PickUps\GemController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerBombing.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMana.cs" />
