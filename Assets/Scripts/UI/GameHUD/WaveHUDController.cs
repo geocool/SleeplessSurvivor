@@ -15,7 +15,10 @@ public class WaveHUDController : MonoBehaviour {
 		waveTimerText = texts [0];
 		waveNumberText = texts [1];
 		waveManager = FindObjectOfType<WaveManager> ().transform.GetComponent<WaveManager> ();
+
+		waveManager.OnWavesStartedEvent += OnWavesStarted;
 	}
+		
 	
 	// Update is called once per frame
 	void Update () {
@@ -23,7 +26,9 @@ public class WaveHUDController : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		updateWaveUI ();
+		if (waveManager.runningWave) {
+			updateWaveUI ();
+		}
 	}
 
 	void updateWaveUI() {
@@ -34,5 +39,9 @@ public class WaveHUDController : MonoBehaviour {
 		string minutesString = minutes.ToString ().Length == 2 ? minutes.ToString () : "0" + minutes.ToString ();
 		string secondsString = seconds.ToString ().Length == 2 ? seconds.ToString () : "0" + seconds.ToString ();
 		waveTimerText.text = minutesString + ":" + secondsString;
+	}
+
+	void OnWavesStarted() {
+		gameObject.SetActive (true);
 	}
 }

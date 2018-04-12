@@ -102,6 +102,9 @@
      <Compile Include="Assets\Scripts\Enemy\EnemyDrop.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyHealth.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyMovement.cs" />
+     <Compile Include="Assets\Scripts\Environment\LookAtPlayerController.cs" />
+     <Compile Include="Assets\Scripts\Environment\UpgradeShopSpeechController.cs" />
+     <Compile Include="Assets\Scripts\Environment\UpgradeShopTrigger.cs" />
      <Compile Include="Assets\Scripts\Managers\ControlsManager.cs" />
      <Compile Include="Assets\Scripts\Managers\GameOverManager.cs" />
      <Compile Include="Assets\Scripts\Managers\GemManager.cs" />

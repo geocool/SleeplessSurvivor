@@ -17,15 +17,15 @@ public class WaveManager : MonoBehaviour {
 	public delegate void OnWaveCleared(WaveController waveController);
 	public event OnWaveCleared WaveClearedEvent;
 
+	public delegate void OnWavesStarted();
+	public event OnWavesStarted OnWavesStartedEvent;
+
 	AnnouncementController announcementController;
 
 	// Use this for initialization
 	void Start () {
 		announcementController = GameObject.Find("AnnouncementUI").GetComponent<AnnouncementController> ();
-
 		wavesCount = waves.transform.childCount;
-		initializeWaves ();
-		initializeWaveAI ();
 	}
 	
 	// Update is called once per frame
@@ -39,7 +39,7 @@ public class WaveManager : MonoBehaviour {
 			if (Time.time >= waveEnabledTimestamp + currentWaveController.lifeTime) {
 				disableCurrentWave ();
 			}
-
+			updateWaveAI ();
 
 		} else if (!clearedWave) {
 			
@@ -52,7 +52,15 @@ public class WaveManager : MonoBehaviour {
 			}
 		}
 
-		updateWaveAI ();
+
+	}
+
+	void startWaves() {
+		initializeWaves ();
+		initializeWaveAI ();
+		if (OnWavesStartedEvent != null) {
+			OnWavesStartedEvent ();
+		}
 	}
 
 	// Change the ratio of enemies spawn
