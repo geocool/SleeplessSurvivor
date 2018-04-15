@@ -8,7 +8,24 @@ public class PlayerMovement : MonoBehaviour
 	Rigidbody playerRigidbody;
 	int floorMask;
 	float camRayLength = 100f;
+    bool canMove = true;
 
+    private void Start ()
+    {
+        UpgradeShopTrigger upgradeShopTrigger = GameObject.Find("ShopTrigger").GetComponent<UpgradeShopTrigger>();
+        upgradeShopTrigger.UpgradeShopEnterEvent += disableMovement;
+        upgradeShopTrigger.UpgradeShopEnterExit += enableMovement;
+    }
+
+    void disableMovement ()
+    {
+        canMove = false;
+    }
+
+    void enableMovement ()
+    {
+        canMove = true;
+    }
 
 	void Awake() 
 	{
@@ -19,12 +36,14 @@ public class PlayerMovement : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		float h = Input.GetAxisRaw ("Horizontal");
-		float v = Input.GetAxisRaw ("Vertical");
+        if(canMove) {
+            float h = Input.GetAxisRaw("MoveHorizontal");
+            float v = Input.GetAxisRaw("MoveVertical");
 
-		Move (h, v);
-		Turning ();
-		Animating (h, v);
+            Move(h, v);
+            Turning();
+            Animating(h, v);
+        }
 	}
 
 	void Move(float h, float v)

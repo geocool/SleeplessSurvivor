@@ -36,10 +36,10 @@ public class PlayerShooting : MonoBehaviour
 		if(timer >= timeBetweenBullets && Time.timeScale != 0) {
 
 			if (ControlsManager.controllerEnabled) {
-				if (Input.GetAxisRaw ("Fire1") > 0 && Input.GetAxisRaw ("ShowLaser") > 0) {
+				if (Input.GetAxisRaw ("FireGun") > 0 && Input.GetAxisRaw ("ShowLaser") > 0) {
 					Shoot ();
 				}
-			} else if (Input.GetButton ("Fire1") && Input.GetButton ("ShowLaser")) {
+			} else if (Input.GetButton ("FireGun") && Input.GetButton ("ShowLaser")) {
 				Shoot ();
 			}
 

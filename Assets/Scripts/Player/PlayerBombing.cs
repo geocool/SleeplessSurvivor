@@ -22,7 +22,7 @@ public class PlayerBombing : MonoBehaviour {
 		timer += Time.deltaTime;
 
 
-		if (Input.GetButton("Fire2") && timer >= timeBetweenBombs && playerMana.hasEnoughtMana(manaPerBomb)) {
+		if (Input.GetButton("ThrowBomb") && timer >= timeBetweenBombs && playerMana.hasEnoughtMana(manaPerBomb)) {
 			dropBomb ();
 		}
 	}

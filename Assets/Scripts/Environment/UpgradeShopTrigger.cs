@@ -5,15 +5,20 @@ using UnityEngine;
 public class UpgradeShopTrigger : MonoBehaviour {
 
 	public delegate void UpgradeShopEnter();
-	public delegate void UpgradeShopEnteredArea ();
+    public delegate void UpgradeShopExit();
+    public delegate void UpgradeShopEnteredArea ();
 	public delegate void UpgradeShopExitedArea ();
-	public event UpgradeShopEnter UpgradeShopEnterEvent;
-	public event UpgradeShopEnteredArea UpgradeShopEnteredAreaEvent;
+    public event UpgradeShopEnter UpgradeShopEnterEvent;
+    public event UpgradeShopExit UpgradeShopEnterExit;
+    public event UpgradeShopEnteredArea UpgradeShopEnteredAreaEvent;
 	public event UpgradeShopExitedArea UpgradeShopExitedAreaEvent;
 
+    public bool isTriggered;
+
+    private Light light;
 	// Use this for initialization
 	void Start () {
-		
+        light = GameObject.Find("UpgradeShopLight").GetComponent<Light>();
 	}
 
 	void FixedUpdate () {
@@ -27,17 +32,20 @@ public class UpgradeShopTrigger : MonoBehaviour {
 
 		if (other.tag == "Player") {
 			Debug.Log("Shop Trigger Enter");
-			if (UpgradeShopEnteredAreaEvent != null) {
+            light.enabled = true;
+            isTriggered = true;
+            if (UpgradeShopEnteredAreaEvent != null) {
 				UpgradeShopEnteredAreaEvent ();
 			}
 		}
-
 	}
 
-	void OnTriggerExit (Collider other){
+	void OnTriggerExit (Collider other) {
 		if (other.tag == "Player") {
 			Debug.Log("Shop Trigger Exit");
-			if (UpgradeShopExitedAreaEvent != null) {
+            light.enabled = false;
+            isTriggered = false;
+            if (UpgradeShopExitedAreaEvent != null) {
 				UpgradeShopExitedAreaEvent ();
 			}
 		}
@@ -48,4 +56,10 @@ public class UpgradeShopTrigger : MonoBehaviour {
 			UpgradeShopEnterEvent ();
 		}
 	}
+
+    void exitShop () {
+        if (UpgradeShopEnterExit != null) {
+            UpgradeShopEnterExit ();
+        }
+    }
 }
